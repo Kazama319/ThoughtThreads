@@ -132,9 +132,12 @@ export default function PostForm({ post }) {
                     </div>
                 )}
                 <Select
-                    options={["active", "inactive"]}
+                    options={["Active", "Inactive"]}
                     label="Status"
-                    className="mb-4 text-black bg-white border border-gray-600 rounded-lg py-2 px-3 outline-none focus:ring-2 focus:ring-indigo-500"
+                    defaultValue="dwdwad"
+                    placeholder="Status"
+                    
+                    className="mb-4 text-black  rounded-lg py-2 px-3 outline-none focus:ring-2 focus:ring-indigo-500"
                     labelClassName="text-gray-400"
                     {...register("status", { required: true })}
                 />

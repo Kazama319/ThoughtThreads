@@ -1,7 +1,7 @@
 import React from "react";
 import { useId } from "react";
 const Select = React.forwardRef(
-  ({ options, label, className, ...props }, ref) => {
+  ({ options, label, className,defaultValue="hi", ...props }, ref) => {
     const [id] = useId(); // Generating a unique ID for the select element
     return (
       <div className="w-full mb-4">
@@ -11,10 +11,11 @@ const Select = React.forwardRef(
           </label>
         )}
         <select
+          defaultValue={defaultValue}
           {...props}
           id={id}
           ref={ref}
-          className={`px-3 py-2 rounded-lg bg-white text-black outline-none focus:bg-gray-50 border border-gray-300 focus:border-indigo-500 duration-200 w-full ${className}`}
+          className={`px-3 py-2 rounded-lg  text-black outline-none  focus:border-indigo-500 duration-200 w-full ${className}`}
         >
           {options?.map((option) => (
             <option key={option} value={option}>
