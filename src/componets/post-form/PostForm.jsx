@@ -98,7 +98,7 @@ export default function PostForm({ post }) {
                     {...register("author", { required: true })}
                 />
                     <Input
-                    label="Author Name"
+                    label="Publish Date"
                     placeholder="12/03/2024"
                     className="mb-4 text-black"
                     labelClassName="text-gray-400"
