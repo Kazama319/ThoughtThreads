@@ -18,12 +18,12 @@ function Home() {
                         </p>
                         <div className="flex justify-center space-x-4">
                             <Link to="/all-posts">
-                                <Button bgColor="bg-indigo-600" textColor="text-white">
+                                <Button bgColor="bg-indigo-600" textColor="text-white" className="transition-transform duration-300 transform hover:scale-105 hover:bg-indigo-800">
                                     Explore Posts
                                 </Button>
                             </Link>
                             <Link to="/add-post">
-                                <Button bgColor="bg-green-500" textColor="text-white">
+                                <Button bgColor="bg-green-600" textColor="text-white" className="transition-transform duration-300 transform hover:scale-105 hover:bg-green-700">
                                     Add a Post
                                 </Button>
                             </Link>
@@ -42,22 +42,34 @@ function Home() {
                             our platform.
                         </p>
                         <div className="flex justify-center space-x-4">
-                            <Link to="/features">
-                                <Button bgColor="bg-blue-600" textColor="text-white">
+                        <Link to="/features">
+                                <Button bgColor="bg-blue-600" textColor="text-white" className="transition-transform duration-300 transform hover:scale-105 hover:bg-blue-700">
                                     Features
                                 </Button>
                             </Link>
                             <Link to="/about">
-                                <Button bgColor="bg-yellow-500" textColor="text-gray-900">
+                                <Button bgColor="bg-red-500" textColor="text-white" className="transition-transform duration-300 transform hover:scale-105 hover:bg-red-600">
                                     About
                                 </Button>
-                            </Link>
+                                </Link>
                         </div>
+                        
                     </div>
+                    
                 </Container>
+                
             </section>
+            <br/>
+          
+             <div className="mt-8 flex justify-center">
+    <Link to="/contact">
+        <Button bgColor="bg-purple-600" textColor="text-white" className="transition-transform duration-300 transform hover:scale-105 hover:bg-purple-700">
+            Give Us Feedback
+        </Button>
+    </Link>
+</div>
 
-            {/* Footer */}
+           
            
         </div>
     );
