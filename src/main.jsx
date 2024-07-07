@@ -13,6 +13,7 @@ import EditPost from "./pages/EditPost.jsx";
 import FeaturesPage from './componets/Features.jsx'
 import AboutPage from './componets/About.jsx'
 import Post from "./pages/Post.jsx";
+import Contact from "./componets/Contact.jsx"
 
 import Myposts from "./pages/Mypost.jsx"
 import AllPosts from "./pages/AllPosts.jsx";
@@ -47,6 +48,14 @@ const router = createBrowserRouter([
             element: (
                 
                     <AboutPage />
+               
+            ),
+        },
+        {
+            path: "/contact",
+            element: (
+                
+                    <Contact />
                
             ),
         },
