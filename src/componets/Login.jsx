@@ -44,7 +44,7 @@ const Login = () => {
                     <Input
                         label="Email"
                         type="email"
-                        placeholder="Enter your email"
+                        placeholder="e.g Kazama@gmail.com"
                         {...register("email", {
                             required: "Email is required",
                             pattern: {
@@ -58,9 +58,9 @@ const Login = () => {
                     <Input
                         label="Password"
                         type="password"
-                        placeholder="Enter your password"
+                        placeholder="Enter a Strong Password"
                         {...register("password", { required: "Password is required" })}
-                        inputClassName="block w-full px-3 py-2 placeholder-gray-400 text-gray-100 bg-gray-700 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-4"
+                        // ClassName="block w-full px-3 py-2 placeholder-black text-gray-100 bg-gray-700 rounded-md focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm mt-4"
                     />
                     <div className="mt-4">
                         <Button

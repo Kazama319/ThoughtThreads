@@ -2,8 +2,10 @@ import React, { useState } from "react";
 import { useDispatch } from 'react-redux';
 import { logout } from '../../store/authSlice';
 import authService from "../../appwrite/auth";
+import { useNavigate } from "react-router-dom";
 
 function LogoutBtn({ width = '100px', className }) {
+    const navigate=useNavigate();
     const dispatch = useDispatch();
     const [loading, setLoading] = useState(false);
 
@@ -12,6 +14,7 @@ function LogoutBtn({ width = '100px', className }) {
         authService.logout().then(() => {
             dispatch(logout());
             setLoading(false); // Reset loading state after logout
+            navigate('/');
         }).catch((error) => {
             console.error('Logout failed:', error);
             setLoading(false); // Reset loading state on error

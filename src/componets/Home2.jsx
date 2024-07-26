@@ -1,18 +1,25 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Container, Logo } from "../componets"; 
 // Replace with your actual components
+import service from "../appwrite/auth"
 import FeaturesPage from "../componets/Features";
+import { useSelector } from "react-redux";
 function Home() {
+    const userData=useSelector((status)=>status.auth.userData);
+    const name=userData?userData.name?userData.name:null:null;
+
     return (
         <div className="bg-gray-900 min-h-screen text-white">
             {/* Main content section */}
             <main className="py-16">
                 <Container>
                     <div className="max-w-3xl mx-auto text-center">
-                        <h1 className="text-4xl font-bold mb-6 animate-fade-in">
-                            Welcome to Your Blog
-                        </h1>
+                    <div className="text-4xl font-bold mb-6 animate-fade-in">
+    Welcome <span className="text-[#088F8F]">{name}</span>
+</div>
+
+
                         <p className="text-lg mb-8">
                         Welcome back! Dive into the latest posts or share your own story
                         </p>

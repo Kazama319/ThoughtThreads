@@ -1,4 +1,4 @@
-import React, { useCallback } from "react";
+import React, { useCallback,useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Button, Input, RTE, Select } from "..";
 import appwriteService from "../../appwrite/config";
@@ -17,8 +17,18 @@ export default function PostForm({ post }) {
 
     const navigate = useNavigate();
     const userData = useSelector((state) => state.auth.userData);
+    useEffect(() => {
+        if (!post) {
+            const currentDateTime = new Date();
+            const date = currentDateTime.toLocaleDateString();
+            const time = currentDateTime.toLocaleTimeString();
 
+            setValue("date", date);
+            setValue("time", time);
+        }
+    }, [setValue, post]);
     const submit = async (data) => {
+
         if (post) {
             const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
 
@@ -39,11 +49,13 @@ export default function PostForm({ post }) {
 
             if (file) {
                 const fileId = file.$id;
+                console.log(file);
                 data.featuredImage = fileId;
                 const dbPost = await appwriteService.createPost({ ...data, userId: userData.$id });
 
                 if (dbPost) {
                     navigate(`/post/${dbPost.$id}`);
+                    console.log(dbPost);
                 }
             }
         }
@@ -97,19 +109,20 @@ export default function PostForm({ post }) {
                     labelClassName="text-gray-400"
                     {...register("author", { required: true })}
                 />
-                    <Input
+                <Input
                     label="Publish Date"
-                    placeholder="12/03/2024"
                     className="mb-4 text-black"
-                    labelClassName="text-gray-400"
+                    labelClassName="text-black"
+                    
                     {...register("date", { required: true })}
+                    readOnly
                 />
-                    <Input
+                <Input
                     label="Time in IST"
-                    placeholder="12:00 pm"
                     className="mb-4 text-black"
-                    labelClassName="text-gray-400"
+                    labelClassName="text-black"
                     {...register("time", { required: true })}
+                    readOnly
                 />
                 <RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} />
             </div>
