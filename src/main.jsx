@@ -14,7 +14,7 @@ import FeaturesPage from './componets/Features.jsx'
 // index.js or App.js
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-import AboutPage from './componets/About.jsx'
+import AboutPage from './componets/About.jsx';
 import Post from "./pages/Post.jsx";
 import Contact from "./componets/Contact.jsx"
 

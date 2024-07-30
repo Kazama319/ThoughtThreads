@@ -44,10 +44,10 @@ const Comment = ({ commentId, deleteComment }) => {
                 
                 {/* Confirmation Modal */}
                 <Modal  show={showModal} onHide={() => setShowModal(false)} className="black-modal">
-                    <Modal.Header closeButton>
+                    <Modal.Header closeButton className="bg-gray-300">
                         <Modal.Title>Confirm Deletion</Modal.Title>
-                    </Modal.Header>
-                    <Modal.Body>
+                    </Modal.Header >
+                    <Modal.Body >
                         Are you sure you want to delete this comment?
                     </Modal.Body>
                     <Modal.Footer>
