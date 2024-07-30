@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Button, Input, RTE, Select } from "..";
 import appwriteService from "../../appwrite/config";
@@ -22,7 +23,16 @@ export default function PostForm({ post }) {
             const currentDateTime = new Date();
             const date = currentDateTime.toLocaleDateString();
             const time = currentDateTime.toLocaleTimeString();
+    useEffect(() => {
+        if (!post) {
+            const currentDateTime = new Date();
+            const date = currentDateTime.toLocaleDateString();
+            const time = currentDateTime.toLocaleTimeString();
 
+            setValue("date", date);
+            setValue("time", time);
+        }
+    }, [setValue, post]);
             setValue("date", date);
             setValue("time", time);
         }
@@ -107,18 +117,25 @@ export default function PostForm({ post }) {
                     {...register("author", { required: true })}
                 />
                    <Input
+                   <Input
                     label="Publish Date"
                     className="mb-4 text-black"
                     labelClassName="text-black"
                     
+                    labelClassName="text-black"
+                    
                     {...register("date", { required: true })}
                     readOnly
+                    readOnly
                 />
+                <Input
                 <Input
                     label="Time in IST"
                     className="mb-4 text-black"
                     labelClassName="text-black"
+                    labelClassName="text-black"
                     {...register("time", { required: true })}
+                    readOnly
                     readOnly
                 />
                 <RTE label="Content :" name="content" control={control} defaultValue={getValues("content")} />
@@ -157,5 +174,6 @@ export default function PostForm({ post }) {
                 </Button>
             </div>
         </form>
+    );
     );
 }   
