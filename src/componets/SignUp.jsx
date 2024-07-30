@@ -5,14 +5,17 @@ import authService from '../appwrite/auth';
 import { login as authLogin } from "../store/authSlice";
 import { Button, Input, Logo } from './index';
 import { useForm } from 'react-hook-form';
+import Spinner from 'react-bootstrap/Spinner';
 
 const SignUp = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const [loading, setLoading] = useState(false);
     const { register, handleSubmit } = useForm();
     const [error, setError] = useState("");
 
     const createAccount = async (data) => {
+        setLoading(true);
         setError("");
         try {
             const userData = await authService.createAccount(data);
@@ -24,6 +27,7 @@ const SignUp = () => {
         } catch (error) {
             setError(error.message);
         }
+        setLoading(false);
     }
 
     return (
@@ -74,7 +78,7 @@ const SignUp = () => {
                             type="submit"
                             className="group relative flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 w-full"
                         >
-                            Create Account
+                            {loading? <Spinner animation="border" size="sm" variant="light" /> : "Create Account"}
                         </Button>
                     </div>
                 </form>

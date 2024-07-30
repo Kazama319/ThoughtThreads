@@ -1,4 +1,4 @@
-import React, { useCallback,useEffect } from "react";
+import React, { useCallback, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { Button, Input, RTE, Select } from "..";
 import appwriteService from "../../appwrite/config";
@@ -28,7 +28,6 @@ export default function PostForm({ post }) {
         }
     }, [setValue, post]);
     const submit = async (data) => {
-
         if (post) {
             const file = data.image[0] ? await appwriteService.uploadFile(data.image[0]) : null;
 
@@ -49,13 +48,11 @@ export default function PostForm({ post }) {
 
             if (file) {
                 const fileId = file.$id;
-                console.log(file);
                 data.featuredImage = fileId;
-                const dbPost = await appwriteService.createPost({ ...data, userId: userData.$id });
+                const dbPost = await appwriteService.createPost({ ...data, userId: userData.$id ,like:[]});
 
                 if (dbPost) {
                     navigate(`/post/${dbPost.$id}`);
-                    console.log(dbPost);
                 }
             }
         }
@@ -109,7 +106,7 @@ export default function PostForm({ post }) {
                     labelClassName="text-gray-400"
                     {...register("author", { required: true })}
                 />
-                <Input
+                   <Input
                     label="Publish Date"
                     className="mb-4 text-black"
                     labelClassName="text-black"
@@ -147,6 +144,7 @@ export default function PostForm({ post }) {
                 <Select
                     options={["Active", "Inactive"]}
                     label="Status"
+                   // value={post ? post.status : "active"}
                     defaultValue="dwdwad"
                     placeholder="Status"
                     
@@ -160,4 +158,4 @@ export default function PostForm({ post }) {
             </div>
         </form>
     );
-}
+}   

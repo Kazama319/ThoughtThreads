@@ -41,7 +41,7 @@ function Header() {
             active: authStatus,
         },
         {
-            name: "My Post",
+            name: "My Posts",
             slug: "My-post",
             active: authStatus,
 
@@ -64,7 +64,7 @@ function Header() {
                                 <li key={item.name}>
                                     <Link
                                         to={item.slug}
-                                        className="px-4 py-2 text-gray-300 rounded-lg transition duration-200 hover:bg-gray-700 hover:text-white"
+                                        className="px-4 py-2 text-white rounded-lg transition duration-200 hover:bg-violet-600 hover:text-white hover:text-"
                                     >
                                         {item.name}
                                     </Link>
@@ -75,7 +75,7 @@ function Header() {
                               <div className="relative">
                               <button
                                   onClick={toggleDropdown}
-                                  className="flex items-center space-x-1 text-violet-400 focus:outline-none"
+                                  className="flex items-center space-x-1 text-pink-400 focus:outline-none"
                               >
                                   <span>{name}</span>
                                   <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" fill="currentColor">
@@ -92,7 +92,7 @@ function Header() {
 
                               </button>
                               {isOpen && (
-                                  <ul className="absolute right-0 mt-2 w-25 bg-gray-700 rounded-md shadow-lg py-1">
+                                  <ul className="absolute right-15 mt-2 w-5- bg-gray-700 rounded-md shadow-lg py-1 ">
                                       <li>
                                           <LogoutBtn/>
                                       </li>

@@ -5,14 +5,16 @@ import authService from '../appwrite/auth';
 import { login as authLogin } from "../store/authSlice";
 import { Button, Input, Logo } from './index';
 import { useForm } from 'react-hook-form';
-
+import Spinner from 'react-bootstrap/Spinner';  
 const Login = () => {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const [loading, setLoading] = useState(false);
     const { register, handleSubmit } = useForm();
     const [error, setError] = useState("");
 
     const login = async (data) => {
+        setLoading(true);
         setError("");
         try {
             const session = await authService.login(data);
@@ -24,6 +26,7 @@ const Login = () => {
         } catch (error) {
             setError(error.message);
         }
+        setLoading(false);
     }
 
     return (
@@ -67,7 +70,7 @@ const Login = () => {
                             type="submit"
                             className="w-full py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                         >
-                            Login
+                            {loading? <Spinner animation="border" size="sm" variant="light" /> : "Login"}
                         </Button>
                     </div>
                 </form>

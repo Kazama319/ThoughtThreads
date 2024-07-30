@@ -11,6 +11,9 @@ import AddPost from "./pages/AddPost.jsx";
 import Signup from './pages/Signup.jsx'
 import EditPost from "./pages/EditPost.jsx";
 import FeaturesPage from './componets/Features.jsx'
+// index.js or App.js
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import AboutPage from './componets/About.jsx'
 import Post from "./pages/Post.jsx";
 import Contact from "./componets/Contact.jsx"

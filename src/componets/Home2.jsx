@@ -4,8 +4,11 @@ import { Button, Container, Logo } from "../componets";
 // Replace with your actual components
 import service from "../appwrite/auth"
 import FeaturesPage from "../componets/Features";
+
+
 import { useSelector } from "react-redux";
 function Home() {
+    const [loading, setLoading] = useState(false);
     const userData=useSelector((status)=>status.auth.userData);
     const name=userData?userData.name?userData.name:null:null;
 
@@ -20,7 +23,7 @@ function Home() {
 </div>
 
 
-                        <p className="text-lg mb-8">
+                       <p className="text-lg mb-8 text-white">
                         Welcome back! Dive into the latest posts or share your own story
                         </p>
                         <div className="flex justify-center space-x-4">

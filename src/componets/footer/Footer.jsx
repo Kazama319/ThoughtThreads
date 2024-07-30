@@ -8,8 +8,8 @@ function Footer() {
             <div className="max-w-5xl mx-auto px-4 py-6 flex flex-wrap justify-between items-center">
                 <div className="flex items-center">
                     <Logo width="100px" />
-                    <p className="text-sm text-gray-100 ml-4">
-                        &copy; Copyright 2023. All Rights Reserved by DevUI.<br/><br/> Made by Bhanu Pratap.
+                    <p className="text-base text-gray-100 ml-4">
+                        Designed and Developed by Bhanu Pratap<br/><br/>&copy; Copyright 2023-24 | All Rights Reserved
                     </p>
                 </div>
                 <div className="flex flex-wrap gap-8">

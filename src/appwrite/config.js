@@ -15,7 +15,7 @@ export class Service{
         this.bucket = new Storage(this.client);
     }
 
-    async createPost({title, slug, content, featuredImage, status, userId,author,date,time}){
+    async createPost({title, slug, content, featuredImage, status, userId,author,date,time, like=[],comment=[]}){
         try {
             return await this.databases.createDocument(
                 conf.appwriteDatabaseId,
@@ -23,6 +23,7 @@ export class Service{
                 slug,
                 {
                     title,
+                    like,
                     content,
                     featuredImage,
                     status,
@@ -30,6 +31,7 @@ export class Service{
                     author,
                     date,
                     time,
+                    comment
                 }
             )
         } catch (error) {
@@ -37,7 +39,67 @@ export class Service{
         }
     }
 
-    async updatePost(slug, {title, content, featuredImage, status,date,time}){
+     async createcomment({username,content,userid}){
+        try {
+            return await this.databases.createDocument(
+                conf.appwriteDatabaseId,
+                conf.appwritecommentid,
+                ID.unique(),
+                {
+                    userid,username,content
+                }
+            )
+        } catch (error) {
+            console.log("Appwrite serive :: createPost :: error", error);
+        }
+    }
+    async updatecomment(commentid,{username,content}){
+        try {
+            return await this.databases.updateDocument(
+                conf.appwriteDatabaseId,
+                conf.appwritecommentid,
+                commentid,
+                {
+                    userid,username,content
+                }
+            )
+        } catch (error) {
+            console.log("Appwrite serive :: createPost :: error", error);
+        }
+    }
+    async getComment(commentid){
+        try {
+            return await this.databases.getDocument(
+                conf.appwriteDatabaseId,
+                conf.appwritecommentid,
+                commentid
+            
+            )
+        } catch (error) {
+            console.log("Appwrite serive :: getPost :: error", error);
+            return false
+        }
+    }
+
+        async deletecommment(commentid){
+        try {
+            await this.databases.deleteDocument(
+                conf.appwriteDatabaseId,
+                conf.appwritecommentid,
+                commentid
+            
+            )
+            return true
+        } catch (error) {
+            console.log("Appwrite serive :: deletePost :: error", error);
+            return false
+        }
+    }
+
+    
+
+
+    async updatePost(slug, {title, content, featuredImage, status,date,time,like,comment}){
         try {
             return await this.databases.updateDocument(
                 conf.appwriteDatabaseId,
@@ -48,8 +110,10 @@ export class Service{
                     content,
                     featuredImage,
                     status,
+                    like,
                     date,
                     time,
+                    comment,
                     
 
                 }
@@ -103,6 +167,7 @@ export class Service{
             return false
         }
     }
+    
 
     // file upload service
 
