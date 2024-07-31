@@ -1,8 +1,46 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Button, Container, Logo } from "../componets"; // Replace with your actual components
 
-function Home() {
+function Home2() {
+    const texts = [
+        "Explore insightful articles and stories. Join our community today!",
+        "Connect, share, and grow with us!",
+        "Discover new perspectives, ignite your creativity"
+    ];
+    const [currentText, setCurrentText] = useState('');
+    const [index, setIndex] = useState(0);
+    const [count, setCount] = useState(0);
+    const [isDeleting, setIsDeleting] = useState(false);
+
+    useEffect(() => {
+        const typingEffect = () => {
+            const text = texts[count];
+            
+            if (!isDeleting) {
+                setCurrentText(text.slice(0, index + 1));
+                setIndex(index + 1);
+
+                if (index === text.length) {
+                    setTimeout(() => {
+                        setIsDeleting(true);
+                    }, 1500); // Pause at the end of the line
+                }
+            } else {
+                setCurrentText(text.slice(0, index - 1));
+                setIndex(index - 1);
+
+                if (index === 0) {
+                    setIsDeleting(false);
+                    setCount((count + 1) % texts.length);
+                }
+            }
+        };
+
+        const typingTimeout = setTimeout(typingEffect, isDeleting ? 75 : 100);
+        return () => clearTimeout(typingTimeout);
+    }, [index, count, isDeleting, texts]);
+
     return (
         <div className="bg-gray-900 min-h-screen text-white flex flex-col items-center">
             {/* Main content section */}
@@ -12,8 +50,9 @@ function Home() {
                         <h1 className="text-4xl font-bold mb-8 animate-fade-in tracking-wide">
                             Welcome to Thought Threads
                         </h1>
-                        <p className="text-lg mb-10 leading-relaxed">
-                            Explore insightful articles and stories. Join our community today!
+                        <p className="text-lg mb-10 text-pink-500 leading-relaxed">
+                            <span>{currentText}</span>
+                            <span className="border-r-2 border-white"></span>
                         </p>
                         <div className="flex justify-center space-x-6">
                             <Link to="/login">
@@ -33,7 +72,6 @@ function Home() {
                                 >
                                     Sign Up
                                 </Button>
-                                
                             </Link>
                         </div>
                     </div>
@@ -88,4 +126,4 @@ function Home() {
     );
 }
 
-export default Home;
+export default Home2;
